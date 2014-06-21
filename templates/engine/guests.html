@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+    <div class="container content-container">
+
+        <h1>Guests</h1>
+
+        {% if guests %}
+
+          <ul class="list-group">
+
+            {% for guest in guests %}
+                <li class="list-group-item"><a href="mailto:{{ guest.email }}">{{ guest.first_name }}&nbsp;{{ guest.last_name }}</a></li>
+            {% endfor %}
+
+          </ul>
+
+        {% else %}
+
+          <p class="lead">There are no guests in the system.</p>
+
+        {% endif %}
+
+    </div><!-- /.container -->
+
+{% endblock %}

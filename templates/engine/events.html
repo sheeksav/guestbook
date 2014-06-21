@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+    <div class="container content-container">
+
+        <h1>Events</h1>
+
+        {% if events %}
+
+          <a href="{% url 'event-create' %}">Create New Event</a>
+
+          <div>&nbsp;</div>
+
+          <ul class="list-group">
+
+            {% for event in events %}
+                <li class="list-group-item"><a href="{% url 'events-guest-list' event.id %}">{{ event.name }}</a></li>
+            {% endfor %}
+
+          </ul>
+
+        {% else %}
+
+          <p class="lead">There are no events in the system.</p>
+          <p><a href="{% url 'event-create' %}" class="btn btn-primary">Add New Event</a></p>
+
+        {% endif %}
+
+    </div><!-- /.container -->
+
+{% endblock %}
