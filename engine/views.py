@@ -51,7 +51,7 @@ class EventGuestListView(TemplateView):
 
         return {
             'event': kwargs.get('event'),
-            #'guest_list': Guest.objects.filter(event=kwargs.get('event')),
+            'guest_list': Guest.objects.filter(event=kwargs.get('event')),
         }
 
 
@@ -98,7 +98,7 @@ class GuestSignInView(FormView):
         last_name = form.cleaned_data.get('last_name')
         email = form.cleaned_data.get('email')
 
-        guest = Guest.objects.create(first_name=first_name, last_name=last_name, email=email)
+        guest = Guest.objects.create(event=self.event, first_name=first_name, last_name=last_name, email=email)
         guest.save()
 
         return super(GuestSignInView, self).form_valid(form)
