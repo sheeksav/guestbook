@@ -18,7 +18,7 @@ urlpatterns = patterns('',
     url(r'^events/guests/add/$', EventCreateView.as_view(), name='event-create'),
 
     url(r'^guests/', GuestListView.as_view(), name='guests'),
-    url(r'^guest/sign/$', GuestSignInView.as_view(), name='guest-sign-in'),
+    url(r'^guest/sign/(?P<pk>\d+)/$', GuestSignInView.as_view(), name='guest-sign-in'),
 
 )
 

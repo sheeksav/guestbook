@@ -72,6 +72,26 @@ class GuestSignInView(FormView):
     form_class = GuestSignInForm
     template_name = 'engine/guest_signin_form.html'
     success_url = '/guests/'
+    event = None
+
+    def dispatch(self, request, *args, **kwargs):
+
+        try:
+            event = Event.objects.get(pk=kwargs.get('pk'))
+
+        except Event.DoesNotExist:
+            return redirect('events')
+
+        self.event = event
+
+        return super(GuestSignInView, self).dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+
+        context = super(GuestSignInView, self).get_context_data(**kwargs)
+        context['event'] = self.event
+
+        return context
 
     def form_valid(self, form):
         first_name = form.cleaned_data.get('first_name')

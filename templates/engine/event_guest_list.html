@@ -20,6 +20,7 @@
         {% else %}
 
           <p class="lead">There are no guests signed in for this event.</p>
+          <p><a class="btn btn-primary" href="{% url 'guest-sign-in' event.id %}">Sign this Guestbook</a></p>
 
         {% endif %}
 
